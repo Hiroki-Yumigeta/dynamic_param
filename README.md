@@ -1,0 +1,2 @@
+# dynamic_param
+dynamic_reconfigureとrqt_reconfigureの使い方
