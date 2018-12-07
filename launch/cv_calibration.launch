@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="dynamic_param" type="cv_calib.py" name="cv_calib" output="screen"/>
+    <node pkg="rqt_reconfigure" type="rqt_reconfigure" name="rqt_reconfigure"/>
+</launch>
