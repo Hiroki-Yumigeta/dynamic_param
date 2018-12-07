@@ -17,3 +17,65 @@ dynamic_reconfigureとrqt_reconfigureの使い方
 * rqt_reconfigureを利用としたパラメータの動的制御とyamlに保存
 * yamlファイルからの読み出し
 * OpenCVによるパラメータ変更の可視化
+
+# 設定
+
+## 新規作成する場合
+### パッケージ作成
+``` ROS
+catkin create_pkg <package_name> rospy roscpp dynamic_reconfigure
+```
+### CMakeLists.txtの編集
+* 以下を追加する
+```CMakeLists
+generate_dynamic_reconfigure_options(
+  <config file>.cfg
+)
+add_dependencies(<executable> <packagename>_gencfg)
+```
+
+## 既存のパッケージに追加する場合
+* 以下を追加する
+### CMakeLists.txtの編集
+```CMakeLists
+...
+
+find_package(catkin REQUIRED COMPONENTS
+  dynamic_reconfigure # add
+  roscpp
+  rospy
+)
+
+...
+
+generate_dynamic_reconfigure_options(
+  <config file>.cfg
+  ...
+)
+
+...
+
+catkin_package(
+  ...
+  CATKIN_DEPENDS dynamic_reconfigure roscpp rospy
+  ...
+)
+```
+
+## package.xmlの編集
+* 以下を追加する
+``` XML
+  ...
+
+  <build_depend>dynamic_reconfigure</build_depend>
+
+  ...
+
+  <build_export_depend>dynamic_reconfigure</build_export_depend>
+
+  ...
+
+  <exec_depend>dynamic_reconfigure</exec_depend>
+
+  ...
+```

@@ -36,6 +36,6 @@ include_directories(
 
 add_executable(server src/server.cpp) # add(C++)
 
-add_dependencies(server dynamic_param_gencfg) # add(C++)
+add_dependencies(server dynamic_param_gencfg) # add(C++)  <packagename>_gencfg
 
 target_link_libraries(server ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${OpenCV_LIBS}) # add(C++)
